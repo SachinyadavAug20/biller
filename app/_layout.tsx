@@ -19,5 +19,5 @@ export default function RootLayout() {
     }
   }, [fontsLoaded]);
   if (!fontsLoaded) return null;
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return <Stack screenOptions={{ headerShown: false }} initialRouteName="(tabs)" />;
 }

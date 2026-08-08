@@ -1,32 +1,60 @@
 import { Link } from "expo-router";
-import { Pressable, Text } from "react-native";
+import { Image, Pressable, Text } from "react-native";
 import { SafeAreaView as RNSafeAreaView } from "react-native-safe-area-context";
 import { styled } from "nativewind";
+import { View } from "react-native";
+import images from "@/constants/image";
+import {
+  HOME_BALANCE,
+  HOME_USER,
+  UPCOMING_SUBSCRIPTIONS,
+} from "@/constants/data";
+import { icons } from "@/constants/icons";
+import { formatCurrency } from "@/lib/utils";
+import dayjs from "dayjs";
+import ListHeading from "@/components/ListHeading";
+import UpcomingSubscription from "@/components/UpcomingSubscription";
+import { FlatList } from "react-native";
 const SafeAreaView = styled(RNSafeAreaView);
 
 export default function App() {
   return (
     <SafeAreaView className="flex-1 bg-background p-5">
-      <Text className="text-xl font-bold text-primary text-7xl font-sans-extrabold">
-        Home
-      </Text>
-      <Link href="/onboarding" asChild>
-        <Pressable className="mt-4 font-sans-bold rounded bg-primary px-6 py-3">
-          <Text className="text-center text-base text-white">
-            Go to onboarding
+      <View className="home-header">
+        <View className="home-user">
+          <Image source={images.avatar} className="home-avatar" />
+          <Text className="home-user-name">{HOME_USER.name}</Text>
+        </View>
+        <Image source={icons.add} className="home-add-icon" />
+      </View>
+      <View className="home-balance-card">
+        <Text className="home-balance-label">Balance</Text>
+        <View className="home-balance-row">
+          <Text className="home-balance-amount">
+            {formatCurrency(HOME_BALANCE.amount)}
           </Text>
-        </Pressable>
-      </Link>
-      <Link href="/(auth)/sign-in" asChild>
-        <Pressable className="mt-4 font-sans-bold rounded bg-primary px-6 py-3">
-          <Text className="text-center text-base text-white">Sign In</Text>
-        </Pressable>
-      </Link>
-      <Link href="/(auth)/sign-up" asChild>
-        <Pressable className="mt-4 font-sans-bold rounded bg-primary px-6 py-3">
-          <Text className="text-center text-base text-white">Sign Up</Text>
-        </Pressable>
-      </Link>
+          <Text className="home-balance-date">
+            {dayjs(HOME_BALANCE.nextRenewalDate).format("MM/DD")}
+          </Text>
+        </View>
+      </View>
+
+      <View>
+        <ListHeading title="Upcoming" />
+        <FlatList
+          data={UPCOMING_SUBSCRIPTIONS}
+          renderItem={({ item }) => <UpcomingSubscription data={item} />}
+          keyExtractor={(item) => item.id}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          ListEmptyComponent={
+            <Text className="home-empty-state">No upcoming renewals yet.</Text>
+          }
+        />
+      </View>
+      <View>
+        <ListHeading title="All Subscriptions" />
+      </View>
     </SafeAreaView>
   );
 }

@@ -1,6 +1,6 @@
 import { tabs } from "@/constants/data";
 import { Tabs } from "expo-router";
-import { View } from "react-native-reanimated/lib/typescript/Animated";
+import Animated from "react-native-reanimated";
 import clsx from "clsx";
 import { Image } from "react-native";
 import {colors,components} from "@/constants/theme";
@@ -11,11 +11,11 @@ const TabLayout = () => {
   const insets = useSafeAreaInsets();
   const TabIcon = ({ focused, icon }: TabIconProps) => {
     return (
-      <View className="tabs-icon">
-        <View className={clsx("tabs-pill", focused && "tabs-active")}>
+      <Animated.View className="tabs-icon">
+        <Animated.View className={clsx("tabs-pill", focused && "tabs-active")}>
           <Image source={icon} className="tabs-glyph" resizeMode="contain"/>
-        </View>
-      </View>
+        </Animated.View>
+      </Animated.View>
     );
   };
   return (
