@@ -6,6 +6,7 @@ import { View } from "react-native";
 import images from "@/constants/image";
 import {
   HOME_BALANCE,
+  HOME_SUBSCRIPTIONS,
   HOME_USER,
   UPCOMING_SUBSCRIPTIONS,
 } from "@/constants/data";
@@ -15,6 +16,7 @@ import dayjs from "dayjs";
 import ListHeading from "@/components/ListHeading";
 import UpcomingSubscription from "@/components/UpcomingSubscription";
 import { FlatList } from "react-native";
+import SubscriptionCard from "@/components/SubscriptionCard";
 const SafeAreaView = styled(RNSafeAreaView);
 
 export default function App() {
@@ -54,6 +56,7 @@ export default function App() {
       </View>
       <View>
         <ListHeading title="All Subscriptions" />
+        <SubscriptionCard {...HOME_SUBSCRIPTIONS[0]}/>
       </View>
     </SafeAreaView>
   );
