@@ -350,6 +350,30 @@
         @apply text-sm font-sans-bold text-accent;
     }
 
+    .auth-back {
+        @apply size-10 items-center justify-center rounded-full border border-border bg-card;
+    }
+
+    .auth-error-banner {
+        @apply flex-row items-center gap-2 rounded-2xl border border-destructive/30 bg-destructive/10 px-4 py-3;
+    }
+
+    .auth-error-banner-text {
+        @apply flex-1 text-sm font-sans-medium text-destructive;
+    }
+
+    .auth-otp {
+        @apply rounded-2xl border border-border bg-background px-4 py-4 text-center text-2xl font-sans-bold tracking-[10px] text-primary;
+    }
+
+    .auth-strength-track {
+        @apply flex-row gap-1.5;
+    }
+
+    .auth-strength-segment {
+        @apply h-1.5 flex-1 rounded-full bg-border;
+    }
+
     .modal-overlay {
         @apply flex-1 bg-black/50;
     }
