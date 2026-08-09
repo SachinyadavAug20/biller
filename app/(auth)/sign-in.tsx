@@ -34,11 +34,7 @@ const SignIn = () => {
   const isSubmitting = fetchStatus === "fetching";
 
   const fieldError = {
-    email:
-      localErrors.email ??
-      errors.fields.identifier?.message ??
-      errors.fields.emailAddress?.message ??
-      undefined,
+    email: localErrors.email ?? errors.fields.identifier?.message ?? undefined,
     password: localErrors.password ?? errors.fields.password?.message ?? undefined,
     code: localErrors.code ?? errors.fields.code?.message ?? undefined,
   };
@@ -138,7 +134,7 @@ const SignIn = () => {
         subtitle={`Enter the 6-digit code we sent to ${emailAddress.trim()}.`}
         footer={
           <View className="auth-link-row">
-            <Text className="auth-link-copy">Didn't mean to do this?</Text>
+            <Text className="auth-link-copy">{"Didn't mean to do this?"}</Text>
             <Link href="/(auth)/sign-up" asChild>
               <Pressable hitSlop={8}>
                 <Text className="auth-link">Create an account</Text>

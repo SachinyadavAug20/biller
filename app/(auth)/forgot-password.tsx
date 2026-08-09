@@ -40,11 +40,7 @@ const ForgotPassword = () => {
   const isSubmitting = fetchStatus === "fetching";
 
   const fieldError = {
-    email:
-      localErrors.email ??
-      errors.fields.identifier?.message ??
-      errors.fields.emailAddress?.message ??
-      undefined,
+    email: localErrors.email ?? errors.fields.identifier?.message ?? undefined,
     code: localErrors.code ?? errors.fields.code?.message ?? undefined,
     password: localErrors.password ?? errors.fields.password?.message ?? undefined,
     confirmPassword: localErrors.confirmPassword,
